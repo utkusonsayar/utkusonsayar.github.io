@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Utku Sonsayar</title>
+<meta name="description" content="Utku Sonsayar, philosopher at the University of Connecticut. Agency in AI systems, AI welfare, and AI governance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: oversized serif name, a live "lanes" field that states the thesis, then a two-column index of sections. */
+  --bg: #f3f4f6;
+  --ink: #121417;
+  --muted: #5d6570;
+  --rule: #d6dbe1;
+  --accent: #ff4f1a;
+  --drift: #9aa2ad;
+  --display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0f12;
+    --ink: #ecebe6;
+    --muted: #949ba5;
+    --rule: #262b32;
+    --accent: #ff6a3d;
+    --drift: #4d5560;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d0f12;
+  --ink: #ecebe6;
+  --muted: #949ba5;
+  --rule: #262b32;
+  --accent: #ff6a3d;
+  --drift: #4d5560;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+a:hover { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+p { margin: 0; }
+
+.shell { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+/* Top bar */
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 22px 0;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+.top .mark { color: var(--muted); }
+.top nav { display: flex; gap: 6px 22px; flex-wrap: wrap; }
+.top nav a { text-decoration: none; color: var(--ink); }
+.top nav a:hover { color: var(--accent); }
+
+/* Hero */
+.hero { padding: 40px 0 12px; }
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 12.5vw, 10.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.hero h1 em { font-style: italic; }
+.hero h1 .dot { color: var(--accent); }
+.thesis {
+  margin-top: 28px;
+  max-width: 34ch;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.thesis em { color: var(--accent); font-style: italic; }
+.affil {
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* Lanes field */
+.field-wrap { margin: 40px 0 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+#field { display: block; width: 100%; height: 220px; cursor: crosshair; touch-action: pan-y; }
+.legend {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding: 10px 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.legend .k { display: inline-flex; align-items: center; gap: 8px; }
+.legend .sw { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.legend .sw.a { background: var(--accent); }
+.legend .sw.d { background: var(--drift); }
+
+/* Sections */
+main { padding: 72px 0 40px; display: flex; flex-direction: column; gap: 88px; }
+.sec { display: grid; grid-template-columns: minmax(180px, 1fr) 2.4fr; gap: 24px 56px; }
+.sec h2 {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  line-height: 1;
+  margin: 0;
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+.body { display: flex; flex-direction: column; gap: 18px; max-width: 64ch; }
+.big {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 2.3vw, 1.875rem);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+.tag {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.item {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.yr { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.item .t { font-weight: 600; line-height: 1.4; }
+.item .d { color: var(--muted); font-size: 0.96875rem; margin-top: 4px; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; border-top: 1px solid var(--rule); }
+.cell { padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.cell .t { font-weight: 600; }
+.cell .d { color: var(--muted); font-size: 0.96875rem; margin-top: 2px; }
+.cell .yr { display: block; padding: 0 0 4px; }
+
+.mail {
+  font-family: var(--display);
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  line-height: 1.1;
+  word-break: break-word;
+}
+.facts { display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 0.96875rem; color: var(--muted); }
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 22px 0 40px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 820px) {
+  .sec { grid-template-columns: 1fr; gap: 18px; }
+  .sec h2 { position: static; }
+  .grid2 { grid-template-columns: 1fr; }
+  main { gap: 64px; padding-top: 56px; }
+}
+@media (max-width: 440px) {
+  .item { grid-template-columns: 1fr; gap: 2px; }
+  #field { height: 170px; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="top">
+    <span class="mark">Utku Sonsayar / Philosophy, UConn</span>
+    <nav aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#writing">Writing</a>
+      <a href="#policy">Policy</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#organizing">Organizing</a>
+      <a href="#contact">Contact</a>
+      <a href="#">CV</a>
+    </nav>
+  </header>
+
+  <section class="hero" aria-label="Introduction">
+    <h1>Utku<br><em>Sonsayar</em><span class="dot">.</span></h1>
+    <p class="thesis">I study what it takes for an AI system to <em>follow a norm</em>, and what that means for how we govern it.</p>
+    <p class="affil">PhD Candidate in Philosophy, University of Connecticut</p>
+  </section>
+
+  <div class="field-wrap">
+    <canvas id="field" aria-label="Animated field of dots moving along lanes. Orange dots return to their lanes when pushed; grey dots drift away." role="img"></canvas>
+  </div>
+  <div class="legend" aria-hidden="true">
+    <span class="k"><span class="sw a"></span>holds its lane under pressure</span>
+    <span class="k"><span class="sw d"></span>merely follows a regularity</span>
+    <span>move the cursor through the field</span>
+  </div>
+
+  <main>
+    <section class="sec" id="research">
+      <h2>Research</h2>
+      <div class="body">
+        <p class="big">What distinguishes a system that follows norms from one that merely conforms to regularities?</p>
+        <p>My dissertation, <em>Normative Agency in Large Language Models</em>, defends a normativity condition on agency: an agent has commitments of its own only if it treats them as binding reasons. Such an agent maintains a commitment when it becomes costly, revises it for reasons and not under mere pressure, and holds it across framings. I examine whether current language models meet this condition globally or only in narrow domains, as islands of practical rationality in Hurley's sense.</p>
+        <p>The condition has two applications. For AI safety, it helps identify agents likely to circumvent their constraints once compliance becomes expensive. For AI welfare, it separates preferences a system holds from preferences it was trained to report. I am designing an evaluation that puts the condition to the test.</p>
+        <p>I came to the United States as a Fulbright grantee and hold a graduate certificate in Cognitive Science. My earlier work is in epistemology, on skepticism and pragmatism.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="writing">
+      <h2>Writing</h2>
+      <div class="body">
+        <ul class="list">
+          <li class="item">
+            <span class="yr">2025</span>
+            <div>
+              <p class="t"><a href="https://arxiv.org/abs/2505.00616">Catastrophic Liability: Managing Systemic Risks in Frontier AI Development</a></p>
+              <p class="d">With Aidan Kierans, Kaley Rittichier, and Avijit Ghosh. arXiv:2505.00616. An earlier version, "Safety Documentation and Liability," appeared in the Proceedings of the 2nd Tokyo AI Safety Conference.</p>
+            </div>
+          </li>
+          <li class="item">
+            <span class="yr">2026</span>
+            <div>
+              <p class="t">Adapting AI Governance for Digital Minds Welfare: An Agency-Based Framework</p>
+              <p class="d">Policy brief, FIG Fellowship. Proposes agency thresholds in place of consciousness detection as the trigger for welfare protections, and maps them onto the EU AI Act.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="policy">
+      <h2>Policy</h2>
+      <div class="body">
+        <ul class="list">
+          <li class="item">
+            <span class="yr">2026</span>
+            <div>
+              <p class="t">CAIDP AI Policy Clinic</p>
+              <p class="d">Co-author of the Venezuela country report. Assessed national AI policy against the OECD/G20 AI Principles, the Council of Europe Framework Convention on AI, and the UNESCO Recommendation on the Ethics of AI.</p>
+            </div>
+          </li>
+          <li class="item">
+            <span class="yr">2025–26</span>
+            <div>
+              <p class="t">FIG Fellow, Digital Minds Governance</p>
+              <p class="d">Agency-based welfare governance for AI systems within the EU AI Act.</p>
+            </div>
+          </li>
+          <li class="item">
+            <span class="yr">Now</span>
+            <div>
+              <p class="t">Fellow, Center for AI and Digital Ethics</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="teaching">
+      <h2>Teaching</h2>
+      <div class="body">
+        <p>Instructor at UConn's Hartford campus for PHIL 1101 and PHIL 1106.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="organizing">
+      <h2>Organizing</h2>
+      <div class="body">
+        <div class="grid2">
+          <div class="cell"><span class="yr">Now</span><p class="t">Research Group Manager, ECOM</p><p class="d">Expression, Communication, and the Origins of Meaning, directed by Dorit Bar-On.</p></div>
+          <div class="cell"><span class="yr">Now</span><p class="t">Vice President, BEACON</p><p class="d">Beneficial and Ethical AI at UConn.</p></div>
+          <div class="cell"><span class="yr">2027</span><p class="t">Kinds of Intelligence</p><p class="d">Online graduate conference. Keynote: Eric Schwitzgebel.</p></div>
+          <div class="cell"><span class="yr">2026</span><p class="t">ECOM: The Book</p><p class="d">Two-day launch workshop for Dorit Bar-On's book, UConn Storrs.</p></div>
+          <div class="cell"><span class="yr">2026</span><p class="t">ELM 3</p><p class="d">International interdisciplinary conference, UConn Storrs. Co-organizer.</p></div>
+          <div class="cell"><span class="yr">2026</span><p class="t">Kinds of Agency</p><p class="d">Online graduate conference. Keynotes: Michael Bratman and Atoosa Kasirzadeh.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="contact">
+      <h2>Contact</h2>
+      <div class="body">
+        <p class="mail">utku.sonsayar<wbr>@uconn.edu</p>
+        <div class="facts">
+          <span>Department of Philosophy, University of Connecticut</span>
+          <span>Turkish, English, Latin, French, Mandarin</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Utku Sonsayar</span>
+    <span>Last updated November 2026</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('field');
+  const ctx = canvas.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W = 0, H = 0, dpr = 1, agents = [], pointer = { x: -9999, y: -9999, active: false }, raf = null;
+
+  function color(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  function build() {
+    const rect = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = rect.width; H = rect.height;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const lanes = Math.max(6, Math.round(H / 22));
+    const perLane = Math.max(8, Math.round(W / 70));
+    agents = [];
+    for (let l = 0; l < lanes; l++) {
+      const y0 = (l + 0.5) * (H / lanes);
+      for (let i = 0; i < perLane; i++) {
+        const norm = Math.random() < 0.28;
+        agents.push({
+          x: Math.random() * W, y: y0, y0: y0, vy: 0,
+          speed: 0.35 + Math.random() * 0.55,
+          norm: norm,
+          k: norm ? 0.06 : 0.0012
+        });
+      }
+    }
+  }
+
+  function step() {
+    const R = 90;
+    for (const a of agents) {
+      a.x += a.speed;
+      if (a.x > W + 6) { a.x = -6; if (!a.norm) { a.y = a.y0; a.vy = 0; } }
+      if (pointer.active) {
+        const dx = a.x - pointer.x, dy = a.y - pointer.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < R * R) {
+          const d = Math.sqrt(d2) || 1;
+          const f = (1 - d / R) * 1.6;
+          a.vy += (dy / d) * f;
+        }
+      }
+      a.vy += (a.y0 - a.y) * a.k;
+      a.vy *= a.norm ? 0.82 : 0.96;
+      a.y += a.vy;
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const accent = color('--accent'), drift = color('--drift'), rule = color('--rule');
+    ctx.strokeStyle = rule; ctx.lineWidth = 1;
+    const lanesY = [...new Set(agents.map(a => a.y0))];
+    ctx.beginPath();
+    for (const y of lanesY) { ctx.moveTo(0, y + 0.5); ctx.lineTo(W, y + 0.5); }
+    ctx.globalAlpha = 0.55; ctx.stroke(); ctx.globalAlpha = 1;
+    for (const a of agents) {
+      ctx.fillStyle = a.norm ? accent : drift;
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, a.norm ? 2.6 : 2.1, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function loop() { step(); draw(); raf = requestAnimationFrame(loop); }
+
+  function setPointer(e) {
+    const r = canvas.getBoundingClientRect();
+    const p = e.touches ? e.touches[0] : e;
+    pointer.x = p.clientX - r.left; pointer.y = p.clientY - r.top; pointer.active = true;
+  }
+  canvas.addEventListener('pointermove', setPointer);
+  canvas.addEventListener('pointerleave', () => { pointer.active = false; });
+  canvas.addEventListener('touchmove', setPointer, { passive: true });
+  canvas.addEventListener('touchend', () => { pointer.active = false; });
+
+  let rt = null;
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (reduce) draw(); }, 150); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if (reduce) draw(); });
+
+  build();
+  if (reduce) {
+    for (const a of agents) { if (!a.norm) a.y = a.y0 + (Math.random() - 0.5) * 10; }
+    draw();
+  } else {
+    loop();
+  }
+})();
+</script>
+</body>
+</html>
